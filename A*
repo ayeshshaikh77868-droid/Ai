@@ -1,0 +1,48 @@
+graph = {
+    'A': [('B', 1), ('C', 3)],
+    'B': [('D', 3), ('E', 1)],
+    'C': [('F', 5)],
+    'D': [],
+    'E': [('F', 2)],
+    'F': []
+}
+
+heuristic = {
+    'A': 5,
+    'B': 4,
+    'C': 4,
+    'D': 3,
+    'E': 1,
+    'F': 0
+}
+
+def astar(start, goal):
+    open_list = [(heuristic[start], 0, start)]
+    parents = {}
+    g_cost = {start: 0}
+
+    while open_list:
+        open_list.sort()
+        f, g, node = open_list.pop(0)
+
+        if node == goal:
+            path = [node]
+            while node in parents:
+                node = parents[node]
+                path.append(node)
+            return path[::-1], g
+
+        for neighbor, cost in graph[node]:
+            new_g = g + cost
+
+            if neighbor not in g_cost or new_g < g_cost[neighbor]:
+                g_cost[neighbor] = new_g
+                parents[neighbor] = node
+                new_f = new_g + heuristic[neighbor]
+                open_list.append((new_f, new_g, neighbor))
+
+    return None, float('inf')
+
+path, cost = astar('A', 'F')
+print("Path:", path)
+print("Cost:", cost)

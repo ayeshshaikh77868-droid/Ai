@@ -1,0 +1,20 @@
+from collections import Counter
+
+documents = [
+    "I love machine learning",
+    "I love deep learning",
+    "Machine learning is useful"
+]
+
+words = []
+
+for doc in documents:
+    words.extend(doc.lower().split())
+
+vocabulary = sorted(set(words))
+print("Vocabulary:", vocabulary)
+
+for doc in documents:
+    word_count = Counter(doc.lower().split())
+    vector = [word_count[word] for word in vocabulary]
+    print(vector)

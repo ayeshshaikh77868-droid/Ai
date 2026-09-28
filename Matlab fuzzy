@@ -1,0 +1,46 @@
+Open MATLAB Online ￼ 
+and sign in. 
+Create a new script for each code section below and 
+save it using the exact filename shown. 
+The Fuzzy Logic Toolbox may be required.
+
+7A: first.m 
+a = 10;
+b = 20;
+c = a + b;
+disp(c);
+
+7B: linedrawn.m
+x = 0:0.1:10;
+y = sin(x);
+
+plot(x, y);
+title('Sine Wave');
+xlabel('X');
+ylabel('Y');
+grid on;
+
+7C: wash.m
+fis = readfis('wash');
+input_value = 50;
+output_value = evalfis(fis, input_value);
+disp(output_value);
+
+
+
+In MATLAB, open Apps and look for Fuzzy Logic Designer. Depending on your MATLAB version, it may be called Fuzzy Logic Designer App.
+Create a new Mamdani fuzzy inference system.
+Add one input and name it dirt.
+Set its range to [0 100].
+Add one output and name it wash_time.
+Set its range to [0 60].
+Create membership functions for the input, such as low, medium, and high, and for the output, such as short, normal, and long.
+Add rules such as:
+If dirt is low, wash time is short.
+If dirt is medium, wash time is normal.
+If dirt is high, wash time is long.
+Save or export the fuzzy system to the MATLAB workspace as fis.
+3. Save it as wash.fis
+Once your fuzzy system is available in the MATLAB workspace as fis, run:
+writeFIS(fis, 'wash.fis')
+

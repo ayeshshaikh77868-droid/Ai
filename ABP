@@ -1,0 +1,57 @@
+def alphabeta(depth, node, alpha, beta, maximizing_player, values, max_depth):
+    if depth == max_depth:
+        return values[node]
+
+    if maximizing_player:
+        best = float('-inf')
+
+        for i in range(2):
+            value = alphabeta(
+                depth + 1,
+                node * 2 + i,
+                alpha,
+                beta,
+                False,
+                values,
+                max_depth
+            )
+
+            best = max(best, value)
+            alpha = max(alpha, best)
+
+            if beta <= alpha:
+                break
+
+        return best
+
+    else:
+        best = float('inf')
+
+        for i in range(2):
+            value = alphabeta(
+                depth + 1,
+                node * 2 + i,
+                alpha,
+                beta,
+                True,
+                values,
+                max_depth
+            )
+
+            best = min(best, value)
+            beta = min(beta, best)
+
+            if beta <= alpha:
+                break
+
+        return best
+
+values = [3, 5, 2, 9, 12, 5, 23, 23]
+max_depth = 3
+
+result = alphabeta(
+    0, 0, float('-inf'), float('inf'),
+    True, values, max_depth
+)
+
+print("Optimal value:", result)

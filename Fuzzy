@@ -1,0 +1,15 @@
+A = {'x': 0.2, 'y': 0.7, 'z': 1.0}
+B = {'x': 0.5, 'y': 0.4, 'z': 0.8}
+
+union = {}
+intersection = {}
+complement = {}
+
+for key in A:
+    union[key] = max(A[key], B[key])
+    intersection[key] = min(A[key], B[key])
+    complement[key] = 1 - A[key]
+
+print("Union:", union)
+print("Intersection:", intersection)
+print("Complement of A:", complement)
